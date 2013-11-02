@@ -1,28 +1,5 @@
-<%- model_class = Video -%>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:link) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @videos.each do |video| %>
-      <tr>
-        <td><%= video.title %></td>
-        <td><%= video.link %></td>
-        <td><%=l video.created_at %></td>
-        <td>
-          <%= link_to t('.destroy', :default => t("helpers.links.Mark as viewed")),
-                      video_path(video),
-                      :method => :mark_as_viewed,                      
-                      :class => 'btn btn-mini btn-success' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<body marginwidth="0" marginheight="0">
+<iframe id="ytplayer" type="text/html" width="100%" height="100%"
+        src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=<%= @video %>"
+        frameborder="0" />
+</body>
