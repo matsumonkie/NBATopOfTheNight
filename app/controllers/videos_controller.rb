@@ -8,25 +8,7 @@ class VideosController < ApplicationController
   def show
   end
 
-  def new
-    @video = Video.new
-  end
-
   def edit
-  end
-
-  def create
-    @video = Video.new(video_params)
-
-    respond_to do |format|
-      if @video.save
-        format.html { redirect_to @video, notice: 'Video was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @video }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @video.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def update
