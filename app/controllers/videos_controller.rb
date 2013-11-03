@@ -5,7 +5,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    @video = Video.last(1)
+    @video = Video.last(1)[0]
     render layout: false
   end
 
