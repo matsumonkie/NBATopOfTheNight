@@ -2,6 +2,6 @@ NBATopOfTheNight::Application.routes.draw do
 
   root 'videos#index'
 
-  resources :videos
+  get 'videos/show', to: 'videos#show'
 
 end
