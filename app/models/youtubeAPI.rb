@@ -16,23 +16,29 @@ class YoutubeAPI
     application_version: APPLICATION_VERSION
   }
   
-  @client = Google::APIClient.new(GOOGLE_CONF)
-  @youtube = @client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
-  @opts = { part: 'id, snippet', q: 'Top', maxResults: 5, type: 'videos', order: 'date', channelId: NBA_CHANNEL_ID }
-  
-  def getLastVideos
-    search_response = @client.execute!(
+  def initialize
+    @client = Google::APIClient.new(GOOGLE_CONF)
+    @youtube = @client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
+    @opts = { part: 'id, snippet', q: 'Top', type: 'videos', order: 'date', channelId: NBA_CHANNEL_ID }
+  end
+
+  def last(maxResults = 5)
+    @opts.merge! maxResults: maxResults
+    response = @client.execute!(
       :api_method => @youtube.search.list,
       :parameters => @opts
     )
+   
     @videos = []
-    search_response.data.items.each do |v|
-      videos.push("#{v.snippet.title} #{v.snippet.publishedAt} (#{v.id.videoId})")
+    response.data.items.each do |v|    
+      #@videos.push("#{v.snippet.title} #{v.snippet.publishedAt} (#{v.id.videoId})")
+      @videos.push("#{v.id.videoId}")
     end
     
-    return videos
-  end  
-
-  getLastVideos
+    return @videos
+  end    
   
 end
+
+#p YoutubeAPI.new.last
+#p YoutubeAPI.new.last(1)

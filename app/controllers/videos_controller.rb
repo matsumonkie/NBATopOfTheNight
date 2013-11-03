@@ -1,12 +1,12 @@
 class VideosController < ApplicationController
 
   def index
-    @video = Video.last
+    @video = Video.last(1)
     render layout: false
   end
 
   def list
-    @videos = Video.all
+    @videos = Video.last(5)
   end
 
 end
