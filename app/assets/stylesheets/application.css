@@ -9,3 +9,7 @@
 body { 
   padding-top: 60px; 
 }
+
+.youtube-player { 
+  display: block; margin: 10px auto; 
+}
