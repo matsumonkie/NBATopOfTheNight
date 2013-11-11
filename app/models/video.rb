@@ -11,6 +11,7 @@ class Video
     rawVideos = YoutubeAPI.new.last(maxResults)
     videos = []
     rawVideos.each do |youtubeVideo|
+      #videos.push(Video.new("coucou"))
       videos.push(Video.new(youtubeVideo))
     end
     
